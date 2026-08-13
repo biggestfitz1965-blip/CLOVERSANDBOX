@@ -101,11 +101,10 @@ clearTimeout(timeout);
 document.getElementById("output").textContent =
     Object.getOwnPropertyNames(result).join("\n");
 
+console.log("Result Object:");
 console.log(result);
-console.dir(result);
-            document.getElementById("output").textContent =
-                JSON.stringify(result, null, 2);
 
+console.dir(result);
         }
         catch (err) {
 
