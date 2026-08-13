@@ -99,8 +99,10 @@ const result = await clover.createToken();
 clearTimeout(timeout);
 
 document.getElementById("output").textContent =
-    JSON.stringify(result, null, 2);
+    Object.getOwnPropertyNames(result).join("\n");
 
+console.log(result);
+console.dir(result);
             document.getElementById("output").textContent =
                 JSON.stringify(result, null, 2);
 
