@@ -101,10 +101,20 @@ clearTimeout(timeout);
 document.getElementById("output").textContent =
     Object.getOwnPropertyNames(result).join("\n");
 
-console.log("Result Object:");
-console.log(result);
+console.log("Result Object:", result);
 
-console.dir(result);
+document.getElementById("output").textContent =
+    `
+Type: ${typeof result}
+
+Properties:
+${Object.getOwnPropertyNames(result).join("\n")}
+
+Prototype Properties:
+${Object.getOwnPropertyNames(
+    Object.getPrototypeOf(result)
+).join("\n")}
+`;
         }
         catch (err) {
 
