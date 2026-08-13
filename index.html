@@ -99,12 +99,20 @@ const result = await clover.createToken();
 clearTimeout(timeout);
 
 document.getElementById("output").textContent =
-    Object.getOwnPropertyNames(result).join("\n");
+`
+Result Type:
+${typeof result}
 
-console.log("Result Object:", result);
+Result Constructor:
+${result.constructor.name}
 
-document.getElementById("output").textContent =
-    `
+Result:
+${String(result)}
+`;
+
+console.log("Result Object:");
+console.log(result);
+console.dir(result);
 Type: ${typeof result}
 
 Properties:
