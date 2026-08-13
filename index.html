@@ -79,16 +79,46 @@ try {
     document.getElementById("output").textContent =
         "Fields mounted successfully.";
 
-    v
+    document.getElementById("testBtn").onclick = async () => {
 
-console.log("Result Object:");
-console.log(result);
-console.dir(result);
-window.lastResult = result;
+        document.getElementById("output").textContent =
+            "Calling createToken()...";
 
-console.log("Result Object:");
-console.log(result);
-console.dir(result);
+        try {
+
+            const timeout = setTimeout(() => {
+                document.getElementById("output").textContent =
+                    "createToken() appears to be hanging.";
+            }, 5000);
+
+            const result = await clover.createToken();
+
+            clearTimeout(timeout);
+
+            window.lastResult = result;
+
+            document.getElementById("output").textContent =
+`
+Result Type:
+${typeof result}
+
+Result Constructor:
+${result.constructor.name}
+
+Properties:
+${Object.getOwnPropertyNames(result).join("\n")}
+
+Prototype Properties:
+${Object.getOwnPropertyNames(
+    Object.getPrototypeOf(result)
+).join("\n")}
+`;
+
+            console.log("Result Object:");
+            console.log(result);
+            console.dir(result);
+
+        }
         catch (err) {
 
             document.getElementById("output").textContent =
@@ -104,8 +134,9 @@ catch (err) {
     document.getElementById("output").textContent =
         "Initialization Error: " + err.message;
 
-}
+    console.error(err);
 
+}
 </script>
 
 </body>
