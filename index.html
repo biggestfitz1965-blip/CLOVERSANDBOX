@@ -94,10 +94,6 @@ const timeout = setTimeout(() => {
         "createToken() appears to be hanging.";
 }, 5000);
 
-const result = await clover.createToken();
-
-clearTimeout(timeout);
-
 document.getElementById("output").textContent =
 `
 Result Type:
@@ -105,15 +101,6 @@ ${typeof result}
 
 Result Constructor:
 ${result.constructor.name}
-
-Result:
-${String(result)}
-`;
-
-console.log("Result Object:");
-console.log(result);
-console.dir(result);
-Type: ${typeof result}
 
 Properties:
 ${Object.getOwnPropertyNames(result).join("\n")}
@@ -123,7 +110,10 @@ ${Object.getOwnPropertyNames(
     Object.getPrototypeOf(result)
 ).join("\n")}
 `;
-        }
+
+console.log("Result Object:");
+console.log(result);
+console.dir(result);
         catch (err) {
 
             document.getElementById("output").textContent =
