@@ -114,6 +114,11 @@ ${Object.getOwnPropertyNames(
 console.log("Result Object:");
 console.log(result);
 console.dir(result);
+window.lastResult = result;
+
+console.log("Result Object:");
+console.log(result);
+console.dir(result);
         catch (err) {
 
             document.getElementById("output").textContent =
