@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Clover Sandbox Test</title>
+
+    <script src="https://checkout.sandbox.dev.clover.com/sdk.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        .field {
+            border: 1px solid #ccc;
+            padding: 12px;
+            margin-bottom: 12px;
+            min-height: 40px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Clover Sandbox Test</h2>
+
+<h3>Payment Fields</h3>
+
+<div id="card-number" class="field"></div>
+<div id="card-date" class="field"></div>
+<div id="card-cvv" class="field"></div>
+<div id="card-postal" class="field"></div>
+
+<button id="testBtn">
+    Generate Token
+</button>
+
+<h3>Output</h3>
+<pre id="output"></pre>
+
+<script>
+
+const PUBLIC_KEY = "090e740d9f203f2fef924ff9e7dcbd7d";
+const MERCHANT_ID = "RCTSTAVIO010002";
+
+try {
+
+    const clover = new Clover(PUBLIC_KEY, {
+        merchantId: MERCHANT_ID
+    });
+
+    const elements = clover.elements();
+
+    elements.create("CARD_NUMBER")
+        .mount("#card-number");
+
+    elements.create("CARD_DATE")
+        .mount("#card-date");
+
+    elements.create("CARD_CVV")
+        .mount("#card-cvv");
+
+    elements.create("CARD_POSTAL_CODE")
+        .mount("#card-postal");
+
+    document.getElementById("output").textContent =
+        "Fields mounted successfully.";
+
+    document.getElementById("testBtn").onclick = async () => {
+
+        document.getElementById("output").textContent =
+            "Attempting token generation...";
+
+        try {
+
+            document.getElementById("output").textContent =
+    "Calling createToken()...";
+
+const timeout = setTimeout(() => {
+    document.getElementById("output").textContent =
+        "createToken() appears to be hanging.";
+}, 5000);
+
+const result = await clover.createToken();
+
+clearTimeout(timeout);
+
+document.getElementById("output").textContent =
+    JSON.stringify(result, null, 2);
+
+            document.getElementById("output").textContent =
+                JSON.stringify(result, null, 2);
+
+        }
+        catch (err) {
+
+            document.getElementById("output").textContent =
+                "ERROR: " + err.message;
+
+        }
+
+    };
+
+}
+catch (err) {
+
+    document.getElementById("output").textContent =
+        "Initialization Error: " + err.message;
+
+}
+
+</script>
+
+</body>
+</html>
