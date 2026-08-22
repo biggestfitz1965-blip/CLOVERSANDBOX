@@ -105,17 +105,11 @@ elements.create("CARD_STREET_ADDRESS")
 
             window.lastResult = result;
 
-            document.getElementById("output").textContent =
+           document.getElementById("output").textContent =
+            JSON.stringify(result, null, 2);
+
+
 `
-Result Type:
-${typeof result}
-
-Result Constructor:
-${result.constructor.name}
-
-Properties:
-${Object.getOwnPropertyNames(result).join("\n")}
-`;
 
             console.log("Result Object:");
             console.log(result);
