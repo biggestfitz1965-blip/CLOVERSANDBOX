@@ -39,11 +39,21 @@
 
 <h3>Payment Fields</h3>
 
+<div id="card-name" class="field"></div>
+<div id="card-street" class="field"></div>
+   
 <div id="card-number" class="field"></div>
 <div id="card-date" class="field"></div>
 <div id="card-cvv" class="field"></div>
 <div id="card-postal" class="field"></div>
-
+<label>Amount</label>
+<input
+id="amount"
+type="number"
+step="0.01"
+value="10.00"
+style="width:100%;padding:10px;margin-bottom:12px;"
+>
 <button id="testBtn">
     Generate Token
 </button>
